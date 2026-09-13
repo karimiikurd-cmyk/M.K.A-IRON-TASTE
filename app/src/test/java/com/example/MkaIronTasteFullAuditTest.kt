@@ -40,13 +40,13 @@ class MkaIronTasteFullAuditTest {
     }
 
     @Test
-    fun `test recipe database integrity - exactly 1120 recipes and valid contents`() = runBlocking {
+    fun `test recipe database integrity - exactly 1160 recipes and valid contents`() = runBlocking {
         val dao = db.recipeDao()
         val totalCount = dao.getRecipeCount()
-        assertEquals("Total recipes in database must be exactly 1120", 1120, totalCount)
+        assertEquals("Total recipes in database must be exactly 1160", 1160, totalCount)
 
         val allRecipes = dao.getAllRecipes().first()
-        assertEquals(1120, allRecipes.size)
+        assertEquals(1160, allRecipes.size)
 
         val converters = RecipeTypeConverters()
 
@@ -87,7 +87,7 @@ class MkaIronTasteFullAuditTest {
             assertTrue("Category '$catName' must have at least 10 recipes, had $count", count >= 10)
             sum += count
         }
-        assertEquals("Sum of all category counts must equal 1120", 1120, sum)
+        assertEquals("Sum of all category counts must equal 1160", 1160, sum)
 
         // Specifically verify core butchery categories
         assertTrue(dao.getCountByCategory("مرینیت‌های ماهی و غذاهای دریایی") >= 50)

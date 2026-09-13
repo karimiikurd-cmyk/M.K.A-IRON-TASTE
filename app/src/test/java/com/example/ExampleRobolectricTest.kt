@@ -23,14 +23,14 @@ class ExampleRobolectricTest {
   }
 
   @Test
-  fun `test database population with 1120 recipes and all categories`() = kotlinx.coroutines.runBlocking {
+  fun `test database population with 1160 recipes and all categories`() = kotlinx.coroutines.runBlocking {
     val context = ApplicationProvider.getApplicationContext<Context>()
     val db = androidx.room.Room.inMemoryDatabaseBuilder(context, com.example.data.database.AppDatabase::class.java).build()
     val dao = db.recipeDao()
     com.example.data.database.DatabaseInitializer.populateIfNeeded(context, dao)
 
     val total = dao.getRecipeCount()
-    assertEquals(1120, total)
+    assertEquals(1160, total)
 
     val seafood = dao.getCountByCategory("مرینیت‌های ماهی و غذاهای دریایی")
     assertEquals(70, seafood)
@@ -48,7 +48,7 @@ class ExampleRobolectricTest {
     assertEquals(60, oils)
 
     val sauces = dao.getCountByCategory("سس‌های باربیکیو و گلیزها")
-    assertEquals(60, sauces)
+    assertEquals(100, sauces)
 
     val turkey = dao.getCountByCategory("مرینیت‌های بوقلمون و بلدرچین")
     assertEquals(60, turkey)

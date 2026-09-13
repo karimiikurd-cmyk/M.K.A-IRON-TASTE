@@ -19,13 +19,14 @@ object DatabaseInitializer {
             val sausageCount = dao.getCountByCategory("سوسیس و کالباس دست‌ساز")
             val saladCount = dao.getCountByCategory("سالاد و پیش‌غذا")
             val dessertCount = dao.getCountByCategory("دسر سرد")
+            val sauceCount = dao.getCountByCategory("سس‌های باربیکیو و گلیزها")
 
-            if (count >= 1120 && saladCount >= 30 && dessertCount >= 20) {
+            if (count >= 1160 && saladCount >= 30 && dessertCount >= 20 && sauceCount >= 40) {
                 Log.d(TAG, "Database fully up-to-date with $count recipes across all categories.")
                 return@withContext
             }
 
-            Log.d(TAG, "Refreshing database to 1120 recipes. Current: $count (Salad: $saladCount, Dessert: $dessertCount)...")
+            Log.d(TAG, "Refreshing database to 1160 recipes. Current: $count (Salad: $saladCount, Dessert: $dessertCount, Sauce: $sauceCount)...")
             val favoriteIds = try { dao.getFavoriteIds().toSet() } catch (e: Exception) { emptySet() }
 
             // Clear old non-custom recipes to prevent duplicates
