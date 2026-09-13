@@ -32,3 +32,19 @@ val SpiceMildGreen = Color(0xFF4E9A51)
 val SpiceMediumOrange = Color(0xFFE07A28)
 val SpiceHotRed = Color(0xFFD32F2F)
 val SpiceFireRed = Color(0xFFFF1744)
+
+// Architectural & Tool Aliases
+val PrimaryCopper = CopperFlame
+val CopperGold = CopperFlame
+val FlameAccent = CrimsonBright
+val IronDark = MetalSurface
+val DarkSurface = MetalSurface
+val DarkSurfaceVariant = MetalCard
+val DarkBackground = ObsidianBlack
+val DarkBorder = MetalBorder
+val SteelBorder = MetalBorder
+val SteelMuted = SilverMuted
+val TextLight = WarmCream
+val TextPrimary = WarmCream
+val TextSecondary = AntiqueParchment
+val TextMuted = SilverMuted

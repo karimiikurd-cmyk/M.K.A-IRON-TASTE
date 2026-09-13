@@ -3,6 +3,7 @@ package com.example.ui.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -42,18 +43,23 @@ fun HomeScreen(
     onProteinSelect: (String?) -> Unit,
     selectedFlavor: String?,
     onFlavorSelect: (String?) -> Unit,
+    selectedCookingMethod: String? = null,
+    onCookingMethodSelect: (String?) -> Unit = {},
     onClearAllFilters: () -> Unit,
     isPopulating: Boolean,
     onRecipeClick: (String) -> Unit,
     onToggleFavorite: (RecipeEntity) -> Unit,
     onOpenTools: () -> Unit,
+    onOpenMeatAtlas: () -> Unit,
+    onOpenCulinaryEngineering: () -> Unit,
+    onOpenPersonalRecipes: () -> Unit,
     onAddNewRecipe: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var showFilterDialog by remember { mutableStateOf(false) }
     var showAboutDialog by remember { mutableStateOf(false) }
 
-    val hasActiveFilter = selectedProtein != null || selectedFlavor != null || selectedCategory != "همه"
+    val hasActiveFilter = selectedProtein != null || selectedFlavor != null || selectedCookingMethod != null || selectedCategory != "همه"
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -241,6 +247,98 @@ fun HomeScreen(
                         color = AntiqueParchment,
                         fontWeight = FontWeight.Medium
                     )
+                }
+            }
+
+            // M.K.A Master Modules Quick Hub
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                // 1. Meat Atlas
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = CharcoalDark,
+                    border = androidx.compose.foundation.BorderStroke(1.dp, CopperFlame.copy(alpha = 0.5f)),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = onOpenMeatAtlas)
+                        .testTag("hub_meat_atlas")
+                ) {
+                    Column(
+                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(Icons.Default.LunchDining, contentDescription = null, tint = CopperFlame, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(3.dp))
+                        Text("اطلس گوشت", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = WarmCream)
+                        Text("آناتومی و استیک", fontSize = 8.sp, color = SilverMuted)
+                    }
+                }
+
+                // 2. Recipe Lab & Marinade Engine
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = CharcoalDark,
+                    border = androidx.compose.foundation.BorderStroke(1.dp, CrimsonBright.copy(alpha = 0.5f)),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = onOpenCulinaryEngineering)
+                        .testTag("hub_culinary_lab")
+                ) {
+                    Column(
+                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(Icons.Default.Science, contentDescription = null, tint = CrimsonBright, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(3.dp))
+                        Text("آزمایشگاه طعم", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = WarmCream)
+                        Text("مهندسی مرینت", fontSize = 8.sp, color = SilverMuted)
+                    }
+                }
+
+                // 3. Butchery & Weight Calculators
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = CharcoalDark,
+                    border = androidx.compose.foundation.BorderStroke(1.dp, AmberGlow.copy(alpha = 0.5f)),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = onOpenTools)
+                        .testTag("hub_butchery_calc")
+                ) {
+                    Column(
+                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(Icons.Default.Calculate, contentDescription = null, tint = AmberGlow, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(3.dp))
+                        Text("محاسبه‌گر قصابی", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = WarmCream)
+                        Text("افت، راندمان و اوزان", fontSize = 8.sp, color = SilverMuted)
+                    }
+                }
+
+                // 4. Personal Recipes & Comparison
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = CharcoalDark,
+                    border = androidx.compose.foundation.BorderStroke(1.dp, CopperLight.copy(alpha = 0.5f)),
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = onOpenPersonalRecipes)
+                        .testTag("hub_personal_recipes")
+                ) {
+                    Column(
+                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(Icons.Default.AutoFixHigh, contentDescription = null, tint = CopperLight, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.height(3.dp))
+                        Text("رسپی‌های من", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = WarmCream)
+                        Text("نسخه‌ها و مقایسه", fontSize = 8.sp, color = SilverMuted)
+                    }
                 }
             }
 
@@ -515,8 +613,10 @@ fun HomeScreen(
         FilterDialog(
             selectedProtein = selectedProtein,
             selectedFlavor = selectedFlavor,
+            selectedCookingMethod = selectedCookingMethod,
             onProteinSelect = onProteinSelect,
             onFlavorSelect = onFlavorSelect,
+            onCookingMethodSelect = onCookingMethodSelect,
             onClearAll = onClearAllFilters,
             onDismiss = { showFilterDialog = false }
         )

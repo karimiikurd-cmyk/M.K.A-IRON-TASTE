@@ -4,10 +4,12 @@ import android.content.Context
 import com.example.data.database.AppDatabase
 import com.example.data.database.DatabaseInitializer
 import com.example.data.model.RecipeEntity
+import com.example.data.model.RecipeVersionEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.util.UUID
 
 class RecipeRepository(private val context: Context) {
     private val db = AppDatabase.getDatabase(context)
@@ -59,5 +61,27 @@ class RecipeRepository(private val context: Context) {
 
     suspend fun deleteRecipe(recipe: RecipeEntity) {
         dao.delete(recipe)
+        dao.deleteVersionsForRecipe(recipe.id)
+    }
+
+    fun getVersionsForRecipe(recipeId: String): Flow<List<RecipeVersionEntity>> =
+        dao.getVersionsForRecipe(recipeId)
+
+    suspend fun saveVersion(version: RecipeVersionEntity): Long =
+        dao.insertVersion(version)
+
+    suspend fun deleteVersion(versionId: Long) =
+        dao.deleteVersionById(versionId)
+
+    suspend fun duplicateRecipe(recipe: RecipeEntity, newName: String? = null): RecipeEntity {
+        val newId = "custom_${UUID.randomUUID().toString().take(8)}"
+        val duplicated = recipe.copy(
+            id = newId,
+            name = newName ?: "${recipe.name} (کپی)",
+            isCustom = true,
+            isFavorite = false
+        )
+        dao.insert(duplicated)
+        return duplicated
     }
 }

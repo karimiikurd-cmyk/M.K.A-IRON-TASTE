@@ -43,6 +43,7 @@ val ALL_CATEGORIES = listOf(
     CategoryItem("مرینیت‌های ماهی و غذاهای دریایی", "ماهی و دریایی", Icons.Default.SetMeal),
     CategoryItem("راب‌های خشک و ادویه‌جات ترکیبی", "راب خشک و ادویه", Icons.Default.Grain),
     CategoryItem("سس‌های باربیکیو و گلیزها", "سس باربیکیو و لعاب", Icons.Default.SoupKitchen),
+    CategoryItem("سس‌های حرفه‌ای و دیپ‌ها", "سس‌های تخصصی و دیپ", Icons.Default.SoupKitchen),
     CategoryItem("روغن‌ها و کره‌های طعم‌دار", "روغن و کره طعم‌دار", Icons.Default.Opacity),
     CategoryItem("محصولات آماده طبخ قصابی", "آماده طبخ ویترینی", Icons.Default.Inventory2),
     CategoryItem("مرینیت‌های اختصاصی", "مرینیت‌های اختصاصی", Icons.Default.Star),

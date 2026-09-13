@@ -24,8 +24,10 @@ import com.example.ui.theme.*
 fun FilterDialog(
     selectedProtein: String?,
     selectedFlavor: String?,
+    selectedCookingMethod: String? = null,
     onProteinSelect: (String?) -> Unit,
     onFlavorSelect: (String?) -> Unit,
+    onCookingMethodSelect: (String?) -> Unit = {},
     onClearAll: () -> Unit,
     onDismiss: () -> Unit
 ) {
@@ -57,6 +59,17 @@ fun FilterDialog(
         "سبزیجات معطر" to "Herb",
         "شیرین و نمکی" to "Sweet",
         "ملایم" to "Mild"
+    )
+
+    val cookingMethods = listOf(
+        "همه" to null,
+        "گریل" to "گریل",
+        "منقل زغالی" to "منقل",
+        "تابه چدنی" to "تابه چدنی",
+        "فر" to "فر",
+        "سرخ‌کردنی" to "سرخ",
+        "سوزوید" to "سوزوید",
+        "اسموکر / باربیکیو" to "اسموکر"
     )
 
     Dialog(onDismissRequest = onDismiss) {
@@ -184,6 +197,49 @@ fun FilterDialog(
                             modifier = Modifier
                                 .clickable { onFlavorSelect(value) }
                                 .testTag("filter_flavor_$label")
+                        ) {
+                            Text(
+                                text = label,
+                                fontSize = 12.sp,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(18.dp))
+
+                // Cooking Method Group
+                Text(
+                    text = "روش و تکنیک پخت:",
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = CopperLight
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    cookingMethods.forEach { (label, value) ->
+                        val isSelected = (value == null && selectedCookingMethod == null) ||
+                                (value != null && selectedCookingMethod == value)
+
+                        Surface(
+                            color = if (isSelected) AmberGlow else MetalSurface,
+                            contentColor = if (isSelected) ObsidianBlack else SilverMuted,
+                            shape = RoundedCornerShape(8.dp),
+                            border = androidx.compose.foundation.BorderStroke(
+                                1.dp,
+                                if (isSelected) AmberGlow else MetalBorder
+                            ),
+                            modifier = Modifier
+                                .clickable { onCookingMethodSelect(value) }
+                                .testTag("filter_cooking_$label")
                         ) {
                             Text(
                                 text = label,

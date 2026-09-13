@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.data.model.RecipeEntity
+import com.example.data.model.RecipeVersionEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -70,4 +71,22 @@ interface RecipeDao {
 
     @Query("SELECT id FROM recipes WHERE isFavorite = 1")
     suspend fun getFavoriteIds(): List<String>
+
+    @Query("SELECT * FROM recipe_versions WHERE parentRecipeId = :parentRecipeId ORDER BY versionNumber DESC, timestamp DESC")
+    fun getVersionsForRecipe(parentRecipeId: String): Flow<List<RecipeVersionEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertVersion(version: RecipeVersionEntity): Long
+
+    @Delete
+    suspend fun deleteVersion(version: RecipeVersionEntity)
+
+    @Query("DELETE FROM recipe_versions WHERE versionId = :versionId")
+    suspend fun deleteVersionById(versionId: Long)
+
+    @Query("DELETE FROM recipe_versions WHERE parentRecipeId = :parentRecipeId")
+    suspend fun deleteVersionsForRecipe(parentRecipeId: String)
+
+    @Query("SELECT * FROM recipe_versions ORDER BY timestamp DESC")
+    fun getAllVersions(): Flow<List<RecipeVersionEntity>>
 }

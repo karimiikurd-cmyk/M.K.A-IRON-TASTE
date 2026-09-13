@@ -15,7 +15,10 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.ui.screens.AddEditRecipeScreen
 import com.example.ui.screens.ButcherToolsScreen
+import com.example.ui.screens.CulinaryEngineeringScreen
 import com.example.ui.screens.HomeScreen
+import com.example.ui.screens.MeatAtlasScreen
+import com.example.ui.screens.PersonalRecipesScreen
 import com.example.ui.screens.RecipeDetailScreen
 import com.example.ui.theme.MyApplicationTheme
 import com.example.ui.theme.ObsidianBlack
@@ -26,6 +29,9 @@ sealed interface Screen {
     data class Detail(val recipeId: String) : Screen
     data class AddEdit(val recipeId: String? = null) : Screen
     data object Tools : Screen
+    data object MeatAtlas : Screen
+    data object CulinaryEngineering : Screen
+    data object PersonalRecipes : Screen
 }
 
 class MainActivity : ComponentActivity() {
@@ -51,6 +57,7 @@ class MainActivity : ComponentActivity() {
                         val selectedCategory by viewModel.selectedCategory.collectAsStateWithLifecycle()
                         val selectedProtein by viewModel.selectedProtein.collectAsStateWithLifecycle()
                         val selectedFlavor by viewModel.selectedFlavor.collectAsStateWithLifecycle()
+                        val selectedCookingMethod by viewModel.selectedCookingMethod.collectAsStateWithLifecycle()
                         val batchWeightKg by viewModel.batchWeightKg.collectAsStateWithLifecycle()
                         val isPopulating by viewModel.isPopulating.collectAsStateWithLifecycle()
 
@@ -74,6 +81,8 @@ class MainActivity : ComponentActivity() {
                                     onProteinSelect = viewModel::onProteinSelect,
                                     selectedFlavor = selectedFlavor,
                                     onFlavorSelect = viewModel::onFlavorSelect,
+                                    selectedCookingMethod = selectedCookingMethod,
+                                    onCookingMethodSelect = viewModel::onCookingMethodSelect,
                                     onClearAllFilters = viewModel::clearAllFilters,
                                     isPopulating = isPopulating,
                                     onRecipeClick = { recipeId ->
@@ -82,6 +91,15 @@ class MainActivity : ComponentActivity() {
                                     onToggleFavorite = viewModel::toggleFavorite,
                                     onOpenTools = {
                                         currentScreen = Screen.Tools
+                                    },
+                                    onOpenMeatAtlas = {
+                                        currentScreen = Screen.MeatAtlas
+                                    },
+                                    onOpenCulinaryEngineering = {
+                                        currentScreen = Screen.CulinaryEngineering
+                                    },
+                                    onOpenPersonalRecipes = {
+                                        currentScreen = Screen.PersonalRecipes
                                     },
                                     onAddNewRecipe = {
                                         currentScreen = Screen.AddEdit()
@@ -129,6 +147,32 @@ class MainActivity : ComponentActivity() {
                             is Screen.Tools -> {
                                 ButcherToolsScreen(
                                     onBack = { currentScreen = Screen.Home }
+                                )
+                            }
+
+                            is Screen.MeatAtlas -> {
+                                MeatAtlasScreen(
+                                    onNavigateBack = { currentScreen = Screen.Home }
+                                )
+                            }
+
+                            is Screen.CulinaryEngineering -> {
+                                CulinaryEngineeringScreen(
+                                    viewModel = viewModel,
+                                    onNavigateBack = { currentScreen = Screen.Home },
+                                    onNavigateToRecipe = { recipeId ->
+                                        currentScreen = Screen.Detail(recipeId)
+                                    }
+                                )
+                            }
+
+                            is Screen.PersonalRecipes -> {
+                                PersonalRecipesScreen(
+                                    viewModel = viewModel,
+                                    onNavigateBack = { currentScreen = Screen.Home },
+                                    onNavigateToRecipe = { recipeId ->
+                                        currentScreen = Screen.Detail(recipeId)
+                                    }
                                 )
                             }
                         }

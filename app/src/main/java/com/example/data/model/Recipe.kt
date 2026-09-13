@@ -43,3 +43,19 @@ data class RecipeEntity(
     val isCustom: Boolean = false,
     val userNotes: String = ""
 )
+
+@Entity(tableName = "recipe_versions")
+data class RecipeVersionEntity(
+    @PrimaryKey(autoGenerate = true) val versionId: Long = 0,
+    val parentRecipeId: String,
+    val versionName: String,
+    val versionNumber: Int = 1,
+    val notes: String = "",
+    val ingredientsJson: String,
+    val prepStepsJson: String,
+    val baseQuantityKg: Double = 1.0,
+    val marinationTime: String = "",
+    val cookingMethod: String = "",
+    val flavorProfile: String = "",
+    val timestamp: Long = System.currentTimeMillis()
+)
