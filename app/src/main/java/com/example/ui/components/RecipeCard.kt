@@ -134,7 +134,7 @@ fun RecipeCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            Divider(color = MetalBorder.copy(alpha = 0.5f), thickness = 0.5.dp)
+            HorizontalDivider(color = MetalBorder.copy(alpha = 0.5f), thickness = 0.5.dp)
 
             Spacer(modifier = Modifier.height(10.dp))
 

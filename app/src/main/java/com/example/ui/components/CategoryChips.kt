@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -26,7 +27,7 @@ data class CategoryItem(
 )
 
 val ALL_CATEGORIES = listOf(
-    CategoryItem("همه", "همه دستورها", Icons.Default.MenuBook),
+    CategoryItem("همه", "همه دستورها", Icons.AutoMirrored.Filled.MenuBook),
     CategoryItem("نشان‌شده‌ها", "نشان‌شده‌ها", Icons.Default.Bookmark),
     CategoryItem("دستورهای من", "دستورهای من", Icons.Default.EditNote),
     CategoryItem("سالاد و پیش‌غذا", "سالاد و پیش‌غذا", Icons.Default.RamenDining),
