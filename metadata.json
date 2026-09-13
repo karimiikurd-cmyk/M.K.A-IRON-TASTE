@@ -1,0 +1,6 @@
+{
+  "name": "M.K.A IRON TASTE",
+  "description": "M.K.A IRON TASTE - Professional signature recipe reference library and precision weight scaling system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

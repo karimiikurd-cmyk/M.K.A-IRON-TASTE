@@ -1,0 +1,84 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Kurdish & Iranian Geometric Diamond / Rhombus Outer Frame -->
+    <path
+        android:strokeColor="#D48246"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M54,22 L86,54 L54,86 L22,54 Z" />
+
+    <!-- Inner Concentric Diamond -->
+    <path
+        android:strokeColor="#E5A870"
+        android:strokeWidth="1.0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#2D0B13"
+        android:pathData="M54,28 L80,54 L54,80 L28,54 Z" />
+
+    <!-- Kurdish 8-Point Intersecting Star Geometric Points -->
+    <path
+        android:strokeColor="#D48246"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"
+        android:pathData="M35,35 L73,35 L73,73 L35,73 Z" />
+
+    <!-- Center Forged Chef's Blade Emblem -->
+    <!-- Chef Knife Blade pointing down-right -->
+    <path
+        android:fillColor="#F4ECE1"
+        android:pathData="M48,38 L60,38 C64,38 66,42 66,46 L66,58 C66,64 60,68 54,70 L52,70 L52,42 C52,40 50,38 48,38 Z" />
+
+    <!-- Knife Bolster & Handle in Copper -->
+    <path
+        android:fillColor="#D48246"
+        android:pathData="M51,36 L57,36 L57,41 L51,41 Z" />
+    <path
+        android:fillColor="#1B1A1E"
+        android:strokeColor="#D48246"
+        android:strokeWidth="0.8"
+        android:pathData="M52,31 L56,31 L56,36 L52,36 Z" />
+
+    <!-- Monogram M Accents (Left & Right Wings) -->
+    <!-- Left Wing -->
+    <path
+        android:strokeColor="#F4ECE1"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M34,51 L38,45 L42,51 L42,59" />
+
+    <!-- Right Wing (A Accent) -->
+    <path
+        android:strokeColor="#F4ECE1"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M66,59 L70,45 L74,59 M67,54 L73,54" />
+
+    <!-- Center 'K' / Diamond Core Rivet -->
+    <path
+        android:fillColor="#D48246"
+        android:pathData="M54,51 L56.5,54 L54,56.5 L51.5,54 Z" />
+
+    <!-- Industrial Corner Rivets -->
+    <path
+        android:fillColor="#E5A870"
+        android:pathData="M54,23 A1.5,1.5 0 1,1 54,26 A1.5,1.5 0 1,1 54,23" />
+    <path
+        android:fillColor="#E5A870"
+        android:pathData="M84,53 A1.5,1.5 0 1,1 84,56 A1.5,1.5 0 1,1 84,53" />
+    <path
+        android:fillColor="#E5A870"
+        android:pathData="M54,83 A1.5,1.5 0 1,1 54,86 A1.5,1.5 0 1,1 54,83" />
+    <path
+        android:fillColor="#E5A870"
+        android:pathData="M24,53 A1.5,1.5 0 1,1 24,56 A1.5,1.5 0 1,1 24,53" />
+</vector>
